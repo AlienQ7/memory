@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Special Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Our Memory Slideshow</title>
 </head>
 <body>
 
-    <section id="memory-of-the-day-section">
-        <h2>💖 Memory of the Day</h2>
-        <div id="memory-container">
-            <p>Loading today's memory...</p>
+    <button id="start-button">
+        Start Our Memory Lane
+    </button>
+    
+    <section id="slideshow-section" style="display: none;">
+        <h2>💖 Memory Slideshow</h2>
+        <div id="slideshow-container">
+            <p id="caption-display"></p>
         </div>
     </section>
 
     <script type="module" src="main.js"></script>
-
 </body>
 </html>
