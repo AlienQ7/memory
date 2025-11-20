@@ -1,40 +1,91 @@
 // main.js
+import { SLIDES } from './memories.js'; // Note: Import SLIDES, not MEMORIES
 
-// 1. Get the list of memories
-import { MEMORIES } from './memories.js';
+let currentSlideIndex = 0;
+let slideshowInterval;
+let isPaused = true;
+const SLIDE_DURATION = 3000; // 3000ms = 3 seconds per slide
 
-// 2. Function to select a memory based on the date
-function getMemoryOfTheDay() {
-    // Get the current date (e.g., Nov 20)
-    const today = new Date();
+const startButton = document.getElementById('start-button');
+const slideshowSection = document.getElementById('slideshow-section');
+const slideshowContainer = document.getElementById('slideshow-container');
+const captionDisplay = document.getElementById('caption-display');
+
+
+// --- CORE FUNCTIONS ---
+
+function updateSlide() {
+    const slide = SLIDES[currentSlideIndex];
     
-    // We use the day of the year (0 to 365) to create a consistent, repeating index.
-    // A simple approach: use the day of the month (1-31) as the index base.
-    const dayOfMonth = today.getDate(); // 1 through 31
+    // Clear previous content
+    slideshowContainer.innerHTML = ''; 
 
-    // Use a hash based on the day of the month to select an index
-    const index = dayOfMonth % MEMORIES.length;
+    // Create and inject the new image
+    const img = document.createElement('img');
+    img.src = slide.image;
+    img.alt = slide.caption;
+    slideshowContainer.appendChild(img);
 
-    return MEMORIES[index];
+    // Update the caption
+    captionDisplay.textContent = slide.caption;
+
+    // Move to the next index, looping back to 0 when done
+    currentSlideIndex = (currentSlideIndex + 1) % SLIDES.length;
 }
 
-// 3. Function to display the memory on the page
-function displayMemory() {
-    const memory = getMemoryOfTheDay();
+function startSlideshow() {
+    if (SLIDES.length === 0) return;
 
-    // Select the HTML elements where the memory should be displayed
-    const container = document.getElementById('memory-container');
+    // 1. Set the initial state
+    isPaused = false;
+    startButton.style.display = 'none'; // Hide the start button
+    slideshowSection.style.display = 'block'; // Show the slideshow area
     
-    if (container) {
-        container.innerHTML = `
-            <div class="memory-card">
-                <h3>${memory.date}</h3>
-                <p>${memory.text}</p>
-                ${memory.image ? `<img src="${memory.image}" alt="${memory.date}">` : ''}
-            </div>
-        `;
+    // 2. Load the first slide immediately
+    updateSlide(); 
+    
+    // 3. Start the timer to change slides periodically
+    slideshowInterval = setInterval(updateSlide, SLIDE_DURATION);
+}
+
+function togglePause() {
+    if (isPaused) {
+        // RESUME
+        isPaused = false;
+        slideshowInterval = setInterval(updateSlide, SLIDE_DURATION);
+        
+        // Optional: Provide visual feedback (e.g., change cursor or overlay)
+        console.log("Slideshow Resumed.");
+        
+    } else {
+        // PAUSE
+        isPaused = true;
+        clearInterval(slideshowInterval); // Stop the timer
+        console.log("Slideshow Paused.");
     }
 }
 
-// 4. Run the function when the page loads
-document.addEventListener('DOMContentLoaded', displayMemory);
+
+// --- EVENT LISTENERS ---
+
+// 1. Start button listener
+startButton.addEventListener('click', startSlideshow);
+
+// 2. Click/Touch listener on the entire document body for pausing
+document.body.addEventListener('click', (event) => {
+    // Prevent the click on the start button from immediately pausing it
+    if (event.target.id !== 'start-button') {
+        if (slideshowSection.style.display === 'block') {
+            togglePause();
+        }
+    }
+});
+
+// For better mobile compatibility, you might also want to add 'touchend'
+document.body.addEventListener('touchend', (event) => {
+    if (event.target.id !== 'start-button') {
+        if (slideshowSection.style.display === 'block') {
+            togglePause();
+        }
+    }
+});
