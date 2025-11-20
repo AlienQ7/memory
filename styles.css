@@ -44,3 +44,51 @@
     border-radius: 6px;
     border: 3px solid #ffebeb; /* Light border around the image */
 }
+/* --- Slideshow Additions --- */
+
+#start-button {
+    display: block;
+    margin: 50px auto;
+    padding: 15px 30px;
+    font-size: 1.5em;
+    cursor: pointer;
+    background-color: #e91e63; /* Pink color */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px #c2185b;
+    transition: background-color 0.2s;
+}
+
+#start-button:active {
+    box-shadow: 0 2px #c2185b;
+    transform: translateY(2px);
+}
+
+#slideshow-container {
+    margin-top: 20px;
+    position: relative;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#slideshow-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#caption-display {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2em;
+    border-radius: 0 0 10px 10px;
+}
+
