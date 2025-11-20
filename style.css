@@ -1,0 +1,46 @@
+/* --- Memory of the Day Styling --- */
+
+/* Center the main heading */
+#memory-of-the-day-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #f7f3f3; /* Light pink/off-white background */
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the main card container */
+.memory-card {
+    background-color: #ffffff; /* White card */
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #ff6666; /* Red border for a loving feel */
+    margin-top: 15px;
+}
+
+/* Style the date (the title of the memory) */
+.memory-card h3 {
+    color: #cc0000; /* Darker red for emphasis */
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #ff9999;
+    padding-bottom: 5px;
+}
+
+/* Style the text */
+.memory-card p {
+    color: #444;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Style the image if present */
+.memory-card img {
+    max-width: 100%; /* Ensures it fits on mobile */
+    height: auto;
+    border-radius: 6px;
+    border: 3px solid #ffebeb; /* Light border around the image */
+}
