@@ -21,3 +21,13 @@ const MEMORIES = [
     }
     // Add 10-20 more memories here!
 ];
+export const MEMORIES = [
+    // Ensure you have at least 5 memories here for variety
+    {
+        id: 1,
+        date: "Our first date!",
+        text: "It was a disaster, but I wouldn't trade it for anything.",
+        image: "images/date.jpg"
+    },
+    // ... add more ...
+];
